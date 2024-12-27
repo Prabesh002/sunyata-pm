@@ -6,6 +6,8 @@ import { Product } from './models/product.model';
   providedIn: 'root'
 })
 export class ProductsService {
+  //Use API to get the product and add it to the mockProduct
+
   private mockProducts: Product[] = [
     {
       id: 1,
