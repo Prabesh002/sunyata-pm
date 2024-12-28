@@ -25,6 +25,7 @@ export class AuthService {
   }
 
   login(username: string, password: string): Observable<AuthResponse> {
+    console.log(username,password);
     return this.http.post<AuthResponse>('https://localhost:7133/api/auth/login', { username, password }).pipe(
       tap((response: AuthResponse) => {
         this.setToken(response.token);

@@ -18,6 +18,7 @@ export class LoginComponent {
   constructor(private authService: AuthService, private router: Router) { }
 
   login(): void {
+  
     this.authService.login(this.username, this.password)
       .subscribe({
         next: () => {
