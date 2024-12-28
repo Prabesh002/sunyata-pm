@@ -9,7 +9,7 @@ import { AuthService } from '../../core/auth/auth.service';
 export class BaseApiService {
     protected apiUrl = 'https://localhost:7133/api';
 
-    constructor(protected http: HttpClient, private authService:AuthService) {}
+    constructor(protected http: HttpClient) {}
 
   protected get<T>(endpoint: string): Observable<T> {
     return this.http.get<T>(`${this.apiUrl}/${endpoint}`, {headers: this.getHeaders()});
@@ -34,9 +34,9 @@ export class BaseApiService {
         let headers = new HttpHeaders({
             'Content-Type': 'application/json',
         })
-        if(this.authService.getToken()){
-            headers= headers.set('Authorization', `Bearer ${this.authService.getToken()}`)
-        }
+        //if(this.authService.getToken()){
+        //    headers= headers.set('Authorization', `Bearer ${this.authService.getToken()}`)
+        //} COMMENTED AS NO NEED FOR RN. 
         return headers;
     }
 }
