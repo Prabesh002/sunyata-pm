@@ -1,65 +1,37 @@
+// src/app/features/products/products.service.ts
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
 import { Product } from './models/product.model';
+import { BaseApiService } from '../../core/services/base-api.service';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ProductsService {
-  //Use API to get the product and add it to the mockProduct
+export class ProductsService extends BaseApiService {
+  private endpoint = 'products';
 
-  private mockProducts: Product[] = [
-    {
-      id: 1,
-      name: 'Sample Product',
-      description: 'Sample Description',
-      price: 99.99,
-      categoryId: 1,
-      brandId: 1,
-      manufacturerId: 1,
-      sku: 'SKU001',
-      stockQuantity: 100,
-      createdAt: new Date(),
-      updatedAt: new Date()
-    }
-  ];
+  constructor(http: HttpClient) {
+    super(http);
+  }
 
   getProducts(): Observable<Product[]> {
-    return of(this.mockProducts);
+    return this.get<Product[]>(this.endpoint);
   }
 
-  getProduct(id: number): Observable<Product | undefined> {
-    return of(this.mockProducts.find(p => p.id === id));
+  getProduct(id: number): Observable<Product> {
+    return this.getById<Product>(this.endpoint, id);
   }
 
-  createProduct(product: Omit<Product, 'id'>): Observable<Product> {
-    const newProduct = {
-      ...product,
-      id: this.mockProducts.length + 1,
-      createdAt: new Date(),
-      updatedAt: new Date()
-    };
-    this.mockProducts.push(newProduct);
-    return of(newProduct);
+  createProduct(product: Omit<Product, 'id' | 'createdAt' | 'updatedAt'>): Observable<Product> {
+    return this.post<Product>(this.endpoint, product);
   }
 
-  updateProduct(id: number, product: Product): Observable<Product> {
-    const index = this.mockProducts.findIndex(p => p.id === id);
-    if (index !== -1) {
-      this.mockProducts[index] = {
-        ...product,
-        updatedAt: new Date()
-      };
-      return of(this.mockProducts[index]);
-    }
-    throw new Error('Product not found');
+  updateProduct(id: number, product: Omit<Product, 'createdAt' | 'updatedAt'>): Observable<Product> {
+    return this.put<Product>(this.endpoint, id, product);
   }
 
   deleteProduct(id: number): Observable<void> {
-    const index = this.mockProducts.findIndex(p => p.id === id);
-    if (index !== -1) {
-      this.mockProducts.splice(index, 1);
-    }
-    return of(void 0);
+    return this.delete(this.endpoint, id);
   }
 }
