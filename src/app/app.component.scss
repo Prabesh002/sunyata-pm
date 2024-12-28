@@ -1,0 +1,63 @@
+.gemini-navbar {
+    background-color: #1a1a1a;
+    box-shadow: 0 2px 4px rgba(255, 255, 255, 0.1);
+    padding: 1.25rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 1px solid #333;
+
+}
+.gemini-navbar-container {
+   display: flex;
+   align-items: center;
+   max-width: 1200px;
+   margin: 0 auto;
+  padding: 0 2rem;
+  justify-content: space-between;
+}
+
+.gemini-brand {
+    font-size: 1.75rem;
+    font-weight: 600;
+    color: #fff;
+    text-decoration: none;
+}
+
+.gemini-nav-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+     display: flex;
+    align-items: center;
+
+}
+
+.gemini-nav-item {
+    margin: 0;
+}
+
+.gemini-nav-link {
+    color: #999;
+    font-weight: 500;
+    padding: 0.6rem 1.2rem;
+     border-radius: 4px;
+    text-decoration: none;
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+    margin-left: 0.5rem;
+     display: block;
+
+}
+
+.gemini-nav-link.active,
+.gemini-nav-link:hover {
+    background-color: #333;
+    color: #fff;
+}
+
+.gemini-container {
+    padding: 2.5rem;
+    background-color: #121212;
+    color: #fff;
+     margin-top: 0;
+}
