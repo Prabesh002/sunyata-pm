@@ -1,19 +1,13 @@
-// src/app/features/products/products.service.ts
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Product } from './models/product.model';
 import { BaseApiService } from '../../core/services/base-api.service';
-import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductsService extends BaseApiService {
   private endpoint = 'products';
-
-  constructor(http: HttpClient) {
-    super(http);
-  }
 
   getProducts(): Observable<Product[]> {
     return this.get<Product[]>(this.endpoint);
