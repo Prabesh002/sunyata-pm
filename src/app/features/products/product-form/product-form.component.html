@@ -183,9 +183,9 @@
                                 <label for="categoryId" class="form-label text-white fw-bold gemini-text-spacing">Category</label>
                                 <select class="form-select gemini-input rounded-3" id="categoryId" formControlName="categoryId">
                                     <option value="">Select Category</option>
-                                    <!-- TODO: FETCH CATEGORIES FROM API -->
-                                    <option value="1">Category 1</option>
-                                    <option value="2">Category 2</option>
+                                    <option *ngFor="let category of categories" [value]="category.id">
+                                        {{category.name}}
+                                    </option>
                                 </select>
                             </div>
 
@@ -193,9 +193,9 @@
                                 <label for="brandId" class="form-label text-white fw-bold gemini-text-spacing">Brand</label>
                                 <select class="form-select gemini-input rounded-3" id="brandId" formControlName="brandId">
                                     <option value="">Select Brand</option>
-                                    <!-- TODO: FETCH BRANDS FROM API -->
-                                    <option value="1">Brand 1</option>
-                                    <option value="2">Brand 2</option>
+                                    <option *ngFor="let brand of brands" [value]="brand.id">
+                                        {{brand.name}}
+                                    </option>
                                 </select>
                             </div>
 
@@ -203,9 +203,9 @@
                                 <label for="manufacturerId" class="form-label text-white fw-bold gemini-text-spacing">Manufacturer</label>
                                 <select class="form-select gemini-input rounded-3" id="manufacturerId" formControlName="manufacturerId">
                                     <option value="">Select Manufacturer</option>
-                                    <!-- TODO: FETCH MANUFACTURERS FROM API -->
-                                    <option value="1">Manufacturer 1</option>
-                                    <option value="2">Manufacturer 2</option>
+                                    <option *ngFor="let manufacturer of manufacturers" [value]="manufacturer.id">
+                                        {{manufacturer.name}}
+                                    </option>
                                 </select>
                             </div>
                         </div>
